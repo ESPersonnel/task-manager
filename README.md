@@ -6,3 +6,6 @@ This is a simple task manager application that allows you to create, edit, and d
 ### Todo Backend
 
 ### Todo Frontend
+
+user - id, first_name, last_name, email, username, password, created_at, updated_at
+task - id, title, description, status, created_at, updated_at
