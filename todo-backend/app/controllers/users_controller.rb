@@ -18,6 +18,7 @@ class UsersController < ApplicationController
     # POST /users
     def create
         user = User.create(user_params)
+        
         if user.valid?
             render json: user, status: :created
         else
@@ -26,8 +27,28 @@ class UsersController < ApplicationController
     end
 
     # PATCH /users/{:id}
+    def update
+        user = User.find_by(id:params[:id])
+
+        if user
+            user.update(user_params)
+            render json: user, status: :accepted
+        else
+            render json: { error: "User not found" }, status: :not_found
+        end
+    end
 
     # DELETE /users/{:id}
+    def destroy
+        user = User.find_by(id:params[:id])
+
+        if user
+            user.destroy
+            head :no_content
+        else
+            render json: { error: "User not found" }, status: :not_found
+        end
+    end
 
     private
 
